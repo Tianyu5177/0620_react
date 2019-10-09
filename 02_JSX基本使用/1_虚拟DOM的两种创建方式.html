@@ -27,10 +27,10 @@
   let myData = 'HeLlo,WoRld'
 
   /*1.创建虚拟DOM*/
-  let vDOM2 = React.createElement('h3',{id:myID.toUpperCase(),demo:'asd'},React.createElement('span',{className:'red'},myData.toLowerCase()))
+  let vDOM2 = React.createElement('h2',{id:myID.toLowerCase(),demo:'asd'},React.createElement('span',{className:'red'},myData.toLowerCase()))
 
   /*2.渲染虚拟DOM到页面真实DOM容器中*/
-  ReactDOM.render(vDOM2,document.getElementById('test2'))
+  ReactDOM.render(vDOM2,document.getElementById('test1'))
 
 </script>
 
@@ -39,13 +39,13 @@
   
   /*1.创建虚拟DOM*/
   let vDOM1 = (
-    <h2 id={myID.toLowerCase()}>
-      <span className="red">{myData.toLowerCase()}</span>
-    </h2>
+    <h3 id={myID.toUpperCase()}>
+      <span className="red">{myData.toUpperCase()}</span>
+    </h3>
   )
   
   /*2.渲染虚拟DOM到页面真实DOM容器中*/
-  ReactDOM.render(vDOM1,document.getElementById('test1'))
+  ReactDOM.render(vDOM1,document.getElementById('test2'))
   
 </script>
 
