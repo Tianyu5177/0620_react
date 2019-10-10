@@ -35,19 +35,21 @@
       )
     }
   }
+  /*限制传参的：必要性、类型*/
   Person.propTypes = {
     name:PropTypes.string.isRequired,
     age:PropTypes.number,
     sex:PropTypes.string,
   }
+  /*指定属性的默认值*/
   Person.defaultProps = {
     age:99,
     sex:'不男不女'
   }
   
-  
+  /*模拟一个人的信息*/
   let p = { name:"李四"}
-  
+  /*渲染组件标签时指定标签属性（传参）*/
   ReactDOM.render(<Person name="张三" age={18} sex="男" />,document.getElementById('example1'))
   /*如下是精简的传递参数的方式，
   使用了...运算符去展开一个对象，
