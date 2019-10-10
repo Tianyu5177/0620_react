@@ -20,8 +20,9 @@
   class MyComponent extends React.Component{
     myRef = React.createRef() //创建一个能够存储ref的容器，而且这个容器是专用的，只能保存一个ref
     show =()=>{
-      let {current} = this.myRef
-      alert(current.value)
+      console.log(this.myRef)
+      //let {current} = this.myRef
+      //alert(this.current.value)
     }
     show2 =(event)=>{
       alert(event.target.value)
@@ -37,7 +38,7 @@
       )
     }
   }
-
+  
   ReactDOM.render(<MyComponent/>,document.getElementById('example'))
 
 </script>
