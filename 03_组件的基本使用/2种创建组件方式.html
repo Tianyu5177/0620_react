@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>2种创建组件方式</title>
+</head>
+<body>
+
+<div id="example1"></div>
+<div id="example2"></div>
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!--引入操作react操作DOM库-->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!--引入babel-->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<!--第一种定义组件的方式：工厂函数方式，简单（无状态）的组件，用工厂函数-->
+<script type="text/babel">
+  /*工厂函数的名字必须大写字母开头*/
+  function MyComponent() {
+    /*此处的this是undefined,因为babel在编译此处代码的时候开启了严格模式*/
+    //console.log(this)
+    return <h2>我是工厂函数创建的组件,我适用于创建简单组件</h2>
+  }
+  
+  /*渲染组件标签*/
+  /*1.React自动寻MyComponent组件定义的位置。2.随后调用了与标签同名的组件函数*/
+  ReactDOM.render(<MyComponent/>,document.getElementById('example1'))
+</script>
+
+<!--第二种定义组件的方式：es6类方式，复杂组件（有状态），用类-->
+<script type="text/babel">
+  
+  class MyComponent2 extends React.Component{
+    /*重写从父类继承过来的render*/
+    render(){
+      /*此处的this是组件的实例对象*/
+      console.log(this)
+      return <h2>我是es6类创建的组件,我适用于创建复杂组件</h2>
+    }
+  }
+  /*渲染组件标签*/
+  /*
+    1.React自动寻MyComponent2组件定义的位置。
+    2.随后实例化了一个与标签同名类的实例。
+    3.通过实例调用了render方法，从而返回了一个虚拟DOM结构
+  */
+  ReactDOM.render(<MyComponent2/>,document.getElementById('example2'))
+  
+  /*
+  * 组件的实例对象，我们以后就简称为：组件对象
+  * */
+  
+</script>
+
+
+</body>
+</html>
