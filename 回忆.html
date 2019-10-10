@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<button onclick="demo()">点我</button>
+<script type="text/javascript">
+  
+  function demo() {
+    alert(1)
+  }
+</script>
+
+<script type="text/javascript">
+  
+  
+  class Person {
+    constructor(name,age){
+      this.name = name
+      this.age = age
+    }
+    speak(){
+      console.log('巴拉巴拉')
+    }
+  }
+  
+  class Student extends Person{
+    constructor(name,age,grade){
+      super(name,age)
+      this.grade = grade
+    }
+    study(){
+      console.log('study')
+    }
+    speak(){
+      console.log(this.name,this.age)
+    }
+    
+  }
+  
+  new Person('kobe',18)
+  new Student()
+  
+  function demo() {
+    
+    let test = ()=> {
+      console.log(this)
+    }
+    test()
+  }
+  demo()
+  
+  let arr = [1,3,5,7,9]
+  console.log(arr)
+  console.log(...arr)
+  
+  let obj = {a:1,b:2}
+  console.log(obj)
+  //console.log(...obj)
+  
+  let obj2 = {...obj}
+  console.log(obj2,obj2 === obj)
+  
+  
+</script>
+
+
+</body>
+</html>
