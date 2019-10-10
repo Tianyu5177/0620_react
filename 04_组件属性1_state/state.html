@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>state</title>
+</head>
+<body>
+
+<div id="example1"></div>
+<div id="example2"></div>
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!--引入操作react操作DOM库-->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!--引入babel-->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  /*定义组件*/
+  class Weather extends React.Component{
+    constructor(param){
+      super(param)
+      this.state = {isHot:true,haha:'真开心'}
+      /*解决自定义方法中this指向的问题*/
+      this.demo = this.demo.bind(this)
+    }
+    /*在组件类中所有自定义的方法里的this都是undefined，React底层做的这件事*/
+    demo(){
+      /*注意：组件实例的state不允许直接修改，如下代码就是直接修改，要是使用React给提供的setState()方法*/
+      //this.state.isHot = false //错误的示范
+      let {isHot} = this.state
+      isHot = !isHot
+      this.setState({isHot:isHot})
+    }
+    render(){
+      let {isHot} = this.state
+      return <h2 onClick={this.demo}>今天天气很{isHot?'炎热':'凉爽'}</h2>
+    }
+  }
+
+  
+  ReactDOM.render(<Weather/>,document.getElementById('example1'))
+  ReactDOM.render(<Weather/>,document.getElementById('example2'))
+  
+</script>
+
+
+</body>
+</html>
+
