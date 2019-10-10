@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>props</title>
+</head>
+<body>
+
+<div id="example1"></div>
+<div id="example2"></div>
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!--引入操作react操作DOM库-->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!--引入babel-->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<!--引入prop-types，用于限制渲染标签时传递参数的：类型、必要性-->
+<script type="text/javascript" src="../js/prop-types.js"></script>
+
+<script type="text/babel">
+  
+  class Person extends React.Component{
+    render(){
+      let {name,age,sex} = this.props
+      return (
+        <div>
+          <ul>
+            <li>姓名:{name}</li>
+            <li>性别:{sex}</li>
+            <li>年龄:{age}</li>
+          </ul>
+          <hr/>
+        </div>
+      )
+    }
+  }
+  Person.propTypes = {
+    name:PropTypes.string.isRequired,
+    age:PropTypes.number,
+    sex:PropTypes.string,
+  }
+  Person.defaultProps = {
+    age:99,
+    sex:'不男不女'
+  }
+  
+  
+  let p = { name:"李四"}
+  
+  ReactDOM.render(<Person name="张三" age={18} sex="男" />,document.getElementById('example1'))
+  /*如下是精简的传递参数的方式，
+  使用了...运算符去展开一个对象，
+  在此处可以直接使用...展开对象的原因是：经过babel编译后，三点运算符就可以展开对象了*/
+  ReactDOM.render(<Person {...p}/>,document.getElementById('example2'))
+  
+</script>
+
+
+</body>
+</html>
+
