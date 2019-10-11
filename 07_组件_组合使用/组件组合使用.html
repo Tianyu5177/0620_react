@@ -24,7 +24,10 @@
     /*状态在哪里，更新状态的方法就在哪里*/
     addTodos = (userInput)=>{
         //1.获取原状态
-        let {todos} = this.state
+        //注意！！！！：state的数据，如果是对象类型，不可以直接更新，如下代码就是直接更新
+        //如果state中的数据是对象类型，尽量生成一个新的对象去操作
+        //let {todos} = this.state
+        let todos = [...this.state.todos]
         //2.追加
         todos.unshift(userInput)
         //3.更新状态
@@ -42,6 +45,10 @@
   }
 
   class Add extends React.Component{
+    static propTypes = {
+      count:PropTypes.number.isRequired,
+      addTodos:PropTypes.func.isRequired
+    }
     add = ()=>{
       let {addTodos} = this.props
       /*
@@ -73,6 +80,9 @@
   }
 
   class List extends React.Component{
+    static propTypes = {
+      todos:PropTypes.array.isRequired,
+    }
     render(){
      let {todos} =  this.props
       return (

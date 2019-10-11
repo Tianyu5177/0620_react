@@ -27,7 +27,7 @@
     }
     /*在组件类中所有自定义的方法里的this都是undefined，React底层做的这件事*/
     demo(){
-      /*注意：组件实例的state不允许直接修改，如下代码就是直接修改，要是使用React给提供的setState()方法*/
+      /*注意！！！！：组件实例的state不允许直接修改，如下代码就是直接修改，要是使用React给提供的setState()方法*/
       //this.state.isHot = false //错误的示范
       let {isHot} = this.state
       isHot = !isHot
