@@ -15,27 +15,19 @@
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
 <script type="text/babel">
-  /*
-  需求: 自定义组件
-    1. 让指定的文本做显示/隐藏的动画
-    2. 切换时间为2S
-    3. 点击按钮从界面中移除组件界面（当前组件在页面上消失）
-   */
 
   /*
     1.【初始化】
         触发条件：ReactDOM.render(<MyComponent/>)
           constructor()
           static getDerivedStateFromProps(Props, prevState) ----- 【新增】
-          componentWillMount() ----【即将废弃 】
           render():提供虚拟DOM，可能会调用多次(1+n)。
           componentDidMount()：启动定时器、发送Ajax请求、只执行一次。
           
     2.【更新】
         触发条件：this.setState({})
-          static getDerivedStateFromProps() ---- 【新增】
+          static getDerivedStateFromProps(Props, prevState) ----- 【新增】
           shouldComponentUpdate()
-          componentWillUpdate() ----- 【即将废弃】
           render()
           getSnapshotBeforeUpdate() ---- 【新增】
           componentDidUpdate()
@@ -44,6 +36,35 @@
         触发条件：ReactDOM.unmountComponentAtNode()
         componentWillUnmount()：做收尾工作，例如：清除定时器等，该回调只会执行一次。
   */
+  
+  class App extends React.Component{
+    state = {data:'hello'}
+    //新提出的getDerivedStateFromProps，用于去代替componentWillMount和componentWillUpdate
+    /*static getDerivedStateFromProps(props,state){
+      console.log(props,state)
+      console.log('---getDerivedStateFromProps---执行了')
+      return {data:'0620'}
+    }*/
+    render(){
+      console.log('render')
+      return <h2>{this.state.data}</h2>
+    }
+    getSnapshotBeforeUpdate(props,preState){
+      console.log(props,preState)
+      console.log('---getSnapshotBeforeUpdate---')
+      return {data:'haha'}
+    }
+    componentDidUpdate(){
+    
+    }
+    componentDidMount(){
+      setTimeout(()=>{
+          this.setState({data:'0620'})
+      },2000)
+    }
+  }
+  
+  ReactDOM.render(<App name="kobe"/>,document.getElementById('example'))
   
 </script>
 </body>

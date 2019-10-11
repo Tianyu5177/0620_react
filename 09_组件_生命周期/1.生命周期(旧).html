@@ -41,9 +41,11 @@
         componentWillUnmount()：收尾工作，例如：清除定时器，只执行一次。
   */
   class Life extends React.Component {
+    
     constructor(a){
       super(a)
       console.log('---constructor---调用了')
+      console.log(this.props.name);
     }
     state = {opacity: 1}
     
@@ -61,7 +63,11 @@
         </div>
       )
     }
-
+    
+    /*shouldComponentUpdate(){
+      return false
+    }*/
+    
     componentWillMount() {
       console.log('--componentWillMount--调用了')
     }
@@ -84,9 +90,17 @@
       clearInterval(this.id)
     }
 
+    componentWillUpdate(){
+      console.log('---componentWillUpdate---调用了')
+    }
+
+    componentDidUpdate(){
+      console.log('---componentDidUpdate---调用了')
+    }
+    
   }
   
-  ReactDOM.render(<Life/>,document.getElementById('example'))
+  ReactDOM.render(<Life name="kobe"/>,document.getElementById('example'))
   
 </script>
 </body>
