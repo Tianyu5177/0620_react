@@ -14,26 +14,28 @@
 
 /*
   1.如果render渲染的数据依赖于一些非state中的数据，通过调用 forceUpdate()达到重新渲染的目的。
-  2.forceUpdate就是重新render
+  2.forceUpdate就是重新render(强制)
 */
 
   class App extends React.Component{
     handleClick = ()=>{
-      this.refs.sub.changeName("Kobe Bryant");
+      this.refs.sub.changeName('Kobe Bryant');
     }
     render(){
-      return (<div>
-        <ShowName ref="sub" />
-        <button onClick={this.handleClick}>click</button>
-      </div>);
+      return (
+        <div>
+          <ShowName ref="sub" />
+          <button onClick={this.handleClick}>点我</button>
+        </div>);
     }
   }
 
   class ShowName extends React.Component{
     name = 'kobe'
     changeName = (name)=>{
-      this.name = name;
-      this.forceUpdate();
+      this.name = name
+      console.log(this)
+      this.forceUpdate()
     }
     render(){
       return (<div>{this.name}</div>);

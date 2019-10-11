@@ -89,12 +89,16 @@
       return (
         <ul>
           {
+            /*最好不要用遍历时候的index作为key*/
             todos.map(function (item,index) {
               return <li key={index}>{item}</li>
             })
           }
         </ul>
       )
+    }
+    componentWillReceiveProps(){
+      console.log('---componentWillReceiveProps---调用了')
     }
   }
   
