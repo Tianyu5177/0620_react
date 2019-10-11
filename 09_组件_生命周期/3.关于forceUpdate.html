@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10_ComponentLife</title>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+
+/*
+  1.如果render渲染的数据依赖于一些非state中的数据，通过调用 forceUpdate()达到重新渲染的目的。
+  2.forceUpdate就是重新render
+*/
+
+  class App extends React.Component{
+    handleClick = ()=>{
+      this.refs.sub.changeName("Kobe Bryant");
+    }
+    render(){
+      return (<div>
+        <ShowName ref="sub" />
+        <button onClick={this.handleClick}>click</button>
+      </div>);
+    }
+  }
+
+  class ShowName extends React.Component{
+    name = 'kobe'
+    changeName = (name)=>{
+      this.name = name;
+      this.forceUpdate();
+    }
+    render(){
+      return (<div>{this.name},{this.state.age}</div>);
+    }
+  }
+  
+  ReactDOM.render(<App/>,document.getElementById('example'))
+
+</script>
+</body>
+</html>
